@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.jira.JiraProjectProperty plugin="jira@3.0.8"/>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash -eux
+virtualenv ENV
+set +o nounset
+. ENV/bin/activate
+set -o nounset
+
+#cd $WORKSPACE/oss-fuzz/infra/gcb
+#pip install -r requirements.txt
+#cd $WORKSPACE/oss-fuzz
+
+cp -r /home/liqiang/oss-fuzz .
+cd oss-fuzz
+ls
+
+#python infra/center.py build_image ${JOB_NAME#*/}
+python infra/center.py build_fuzzers ${JOB_NAME#*/}
+python infra/center.py run_fuzzer ${JOB_NAME#*/} ${JOB_NAME#*/}
+#build_id=$(python build_project.py $WORKSPACE/oss-fuzz/$JOB_NAME)
+#python wait_for_build.py $build_id
+
+cp -r build/out/upx /home/liqiang/oss-fuzz/build/out/
+cp -r build/work/upx /home/liqiang/oss-fuzz/build/work/
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.plugins.ws__cleanup.WsCleanup plugin="ws-cleanup@0.37">
+    <patterns class="empty-list"/>
+    <deleteDirs>false</deleteDirs>
+    <skipWhenFailed>false</skipWhenFailed>
+    <cleanWhenSuccess>true</cleanWhenSuccess>
+    <cleanWhenUnstable>true</cleanWhenUnstable>
+    <cleanWhenFailure>true</cleanWhenFailure>
+    <cleanWhenNotBuilt>true</cleanWhenNotBuilt>
+    <cleanWhenAborted>true</cleanWhenAborted>
+    <notFailBuild>false</notFailBuild>
+    <cleanupMatrixParent> false</cleanupMatrixParent>
+    <externalDelete></externalDelete>
+    <disableDeferreWipeout>false</disableDeferreWipeout>
+    </hudson.plugins.ws__cleanup.WsCleanup>
+  </publishers>
+  <buildWrappers/>
+</project>
