@@ -22,7 +22,7 @@ cmake -G "Ninja" \
       -DLIBCXX_ENABLE_SHARED=OFF -DLIBCXX_ENABLE_STATIC_ABI_LIBRARY=ON \
       -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD="X86" \
       -DLLVM_BINUTILS_INCDIR=/usr/include ~/build/llvm_tools/llvm-4.0.0.src
-ninja;   ninja install
+ninja; ninja install
 cd ~/build/llvm_tools
 mkdir -p build-llvm/msan; cd build-llvm/msan
 cmake -G "Ninja" \
@@ -31,7 +31,7 @@ cmake -G "Ninja" \
       -DLIBCXX_ENABLE_SHARED=OFF -DLIBCXX_ENABLE_STATIC_ABI_LIBRARY=ON \
       -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD="X86" \
        ~/build/llvm_tools/llvm-4.0.0.src
-ninja cxx;   ninja install-cxx
+ninja cxx; ninja install-cxx
 # install LLVMgold in bfd-plugins
   mkdir /usr/lib/bfd-plugins
   cp /usr/local/lib/libLTO.so /usr/lib/bfd-plugins
@@ -45,6 +45,7 @@ export LC_ALL=C
 # build AFLGo
 cd $HOME; git clone https://github.com/aflgo/aflgo.git
 # 切换到指定版本
+cd aflgo;
 git checkout c2888eb
-cd aflgo; make clean all;make install; cd llvm_mode; make clean all;make install
+make clean all;make install; cd llvm_mode; make clean all;make install
 export AFLGO=$HOME/aflgo
