@@ -44,5 +44,7 @@ export LC_ALL=C
   python3 -m pip install networkx pydot pydotplus
 # build AFLGo
 cd $HOME; git clone https://github.com/aflgo/aflgo.git
+# 切换到指定版本
+git checkout c2888eb
 cd aflgo; make clean all;make install; cd llvm_mode; make clean all;make install
 export AFLGO=$HOME/aflgo
