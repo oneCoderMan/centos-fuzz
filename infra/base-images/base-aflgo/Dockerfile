@@ -1,6 +1,7 @@
 FROM hust-fuzz-base/base-clang
 
 # Add custom china source
+RUN apt-get install -y apt-transport-https
 ADD sources.list /etc/apt/
 WORKDIR $SRC
 RUN apt-get update

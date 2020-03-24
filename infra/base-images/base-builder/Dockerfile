@@ -1,6 +1,7 @@
 FROM hust-fuzz-base/base-aflgo
 
 # Add custom china source
+RUN apt-get install -y apt-transport-https
 ADD sources.list /etc/apt/
 RUN apt-get update
 RUN PATH=$PATH:/usr/local/bin

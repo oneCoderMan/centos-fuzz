@@ -1,4 +1,5 @@
 FROM hust-fuzz-base/base-builder
+RUN apt-get install -y apt-transport-https
 ADD sources.list /etc/apt/
 MAINTAINER mike.aizatsky@gmail.com
 RUN apt-get update

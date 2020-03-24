@@ -1,6 +1,7 @@
 FROM hust-fuzz-base/base-image
 
 # Add custom china source
+RUN apt-get install -y apt-transport-https
 ADD sources.list /etc/apt/
 RUN apt-get update
 COPY checkout_build_install_llvm.sh /root/
