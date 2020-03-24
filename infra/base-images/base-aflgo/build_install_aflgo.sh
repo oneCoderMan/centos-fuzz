@@ -45,7 +45,7 @@ export LC_ALL=C
 # build AFLGo
 cd $HOME; git clone https://github.com/aflgo/aflgo.git
 # 切换到指定版本
-cd aflgo;
+cd aflgo
 git checkout c2888eb
 make clean all;make install; cd llvm_mode; make clean all;make install
 export AFLGO=$HOME/aflgo

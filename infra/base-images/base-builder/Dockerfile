@@ -1,4 +1,8 @@
 FROM hust-fuzz-base/base-aflgo
+
+# Add custom china source
+ADD sources.list /etc/apt/
+RUN apt-get update
 RUN PATH=$PATH:/usr/local/bin
 RUN apt-get install -y git \
     subversion \

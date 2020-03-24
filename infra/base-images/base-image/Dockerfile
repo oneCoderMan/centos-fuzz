@@ -1,7 +1,8 @@
 # Base image for all other images.
 
 FROM ubuntu:16.04
-
+# Add custom china source
+ADD sources.list /etc/apt/
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
     apt-get upgrade -y && \

@@ -1,6 +1,7 @@
 FROM hust-fuzz-base/base-clang
 
-
+# Add custom china source
+ADD sources.list /etc/apt/
 WORKDIR $SRC
 RUN apt-get update
 RUN apt-get install -y autoconf libtool automake pkg-config python3 python3-dev python3-pip

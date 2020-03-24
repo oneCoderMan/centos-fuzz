@@ -1,4 +1,6 @@
 FROM hust-fuzz-base/base-image
+# Add custom china source
+ADD sources.list /etc/apt/
 RUN apt-get update
 RUN apt-get install -y bc bison build-essential cmake curl flex git libboost-all-dev libcap-dev libncurses5-dev python-minimal python-pip subversion unzip zlib1g-dev
 RUN apt-get install -y make cmake ninja-build python2.7 binutils-gold binutils-dev

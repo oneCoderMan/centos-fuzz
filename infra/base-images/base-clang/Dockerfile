@@ -1,6 +1,8 @@
 FROM hust-fuzz-base/base-image
 
-
+# Add custom china source
+ADD sources.list /etc/apt/
+RUN apt-get update
 COPY checkout_build_install_llvm.sh /root/
 # Keep all steps in the same script to decrease the number of intermediate
 # layes in docker file.

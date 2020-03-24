@@ -1,5 +1,7 @@
 FROM hust-fuzz-base/base-builder
+ADD sources.list /etc/apt/
 MAINTAINER mike.aizatsky@gmail.com
+RUN apt-get update
 RUN apt-get install -y \
     binutils \
     file \
