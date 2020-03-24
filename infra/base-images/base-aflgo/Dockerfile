@@ -1,8 +1,7 @@
 FROM hust-fuzz-base/base-clang
 
-# Add custom china source
-RUN apt-get install -y apt-transport-https
-ADD sources.list /etc/apt/
+RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN  apt-get clean
 WORKDIR $SRC
 RUN apt-get update
 RUN apt-get install -y autoconf libtool automake pkg-config python3 python3-dev python3-pip

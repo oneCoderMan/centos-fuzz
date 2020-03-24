@@ -1,7 +1,7 @@
 FROM hust-fuzz-base/base-builder
-RUN apt-get install -y apt-transport-https
-ADD sources.list /etc/apt/
 MAINTAINER mike.aizatsky@gmail.com
+RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN  apt-get clean
 RUN apt-get update
 RUN apt-get install -y \
     binutils \

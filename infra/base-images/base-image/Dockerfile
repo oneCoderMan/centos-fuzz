@@ -1,9 +1,8 @@
 # Base image for all other images.
 
 FROM ubuntu:16.04
-RUN apt-get install -y apt-transport-https
-# Add custom china source
-ADD sources.list /etc/apt/
+RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN  apt-get clean
 RUN apt-get update
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \

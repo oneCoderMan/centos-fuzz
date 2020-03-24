@@ -1,8 +1,7 @@
 FROM hust-fuzz-base/base-aflgo
 
-# Add custom china source
-RUN apt-get install -y apt-transport-https
-ADD sources.list /etc/apt/
+RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN  apt-get clean
 RUN apt-get update
 RUN PATH=$PATH:/usr/local/bin
 RUN apt-get install -y git \
