@@ -31,6 +31,7 @@ ls
 
 #python infra/center.py build_image ${JOB_NAME#*/}
 python infra/center.py build_fuzzers ${JOB_NAME#*/}
+echo core >/proc/sys/kernel/core_pattern
 python infra/center.py run_fuzzer ${JOB_NAME#*/} ${JOB_NAME#*/}
 #build_id=$(python build_project.py $WORKSPACE/oss-fuzz/$JOB_NAME)
 #python wait_for_build.py $build_id
