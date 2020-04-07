@@ -5,6 +5,8 @@
 # Usage: $0 <fuzzer_name> <fuzzer_args>
 #afl-fuzz -i $IN -o $OUT ./src/upx.out
 export PATH=$OUT:$PATH
+export AFLGO=/root/aflgo
+echo "===========run_fuzz=========================== $AFLGO"
 afl-fuzz -i $IN -o $OUT $* 
 
 :<<BLOCK
