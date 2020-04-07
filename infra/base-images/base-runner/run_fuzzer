@@ -7,7 +7,7 @@
 export PATH=$OUT:$PATH
 export AFLGO=/root/aflgo
 echo "===========run_fuzz=========================== $AFLGO"
-afl-fuzz -i $IN -o $OUT $* 
+$AFLGo/afl-fuzz -z exp -i $IN -o $OUT $* @@
 
 :<<BLOCK
 
