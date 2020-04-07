@@ -55,5 +55,5 @@ make -j$(nproc)
 
 # 将生成后的插桩编译的文件输出
 pwd
-mv  $SUBJECT/src/ $OUT/base64
+mv  $SUBJECT/src/* $OUT/base64
 
