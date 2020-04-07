@@ -19,6 +19,8 @@ export AFLGO=/root/aflgo
 
 export CC=$AFLGO/afl-clang-fast
 export CXX=$AFLGO/afl-clang-fast++
+export CFLAGS=""
+export CXXFLAGS=""
 export COPY_CFLAGS=$CFLAGS
 export COPY_CXXFLAGS=$CXXFLAGS
 export ADDITIONAL="-targets=$TMP_DIR/BBtargets.txt -outdir=$TMP_DIR -flto -fuse-ld=gold -Wl,-plugin-opt=save-temps"
